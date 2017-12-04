@@ -1,0 +1,22 @@
+version: '2.1'
+services:
+  server:
+    container_name: interfaceAPI_server
+    build: ./server
+    volumes:
+      - './server:/usr/src/server'
+      - './apitypes:/usr/src/apitypes'
+    ports:
+      - '8080:8080'
+  cli:
+    container_name: interfaceAPI_cli
+    build: ./cli
+    volumes:
+      - './cli:/usr/src/cli'
+      - './apitypes:/usr/src/apitypes'
+    ports:
+      - '3333:3333'
+    depends_on:
+      - server
+    links:
+      - server
