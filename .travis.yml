@@ -1,0 +1,7 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - docker-compose run server go test
+  - docker-compose run cli go test
